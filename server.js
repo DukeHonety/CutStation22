@@ -9,9 +9,16 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-    origin: '*'
-}));
+app.use(function(req,res,next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, PATCH");
+    res.header("Access-Control-Allow-Headers", "Accept, Content-Type, Authorization, X-Requested-With");
+
+    next();
+});
+// app.use(cors({
+//     origin: '*'
+// }));
 mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log("MongoDB connected... Ready to fuck")
 }).catch(err => console.log(err))
