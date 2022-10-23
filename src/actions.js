@@ -32,7 +32,7 @@ export const setOrderType = (dispatch, OrderType) => {
 export const listCategories = async (dispatch) => {
     dispatch({ type: CATEGORY_LIST_REQUEST });
     try {
-        const { data } = await Axios.get('https://157.230.179.180:5000/api/categories');
+        const { data } = await Axios.get('http://157.230.179.180:5000/api/categories');
         return dispatch({
             type: CATEGORY_LIST_SUCCESS,
             payload: data,
@@ -48,7 +48,7 @@ export const listCategories = async (dispatch) => {
 export const listProducts = async (dispatch, categoryName = '') => {
     dispatch({ type: PRODUCT_LIST_REQUEST });
     try {
-        const { data } = await Axios.get(`https://157.230.179.180:5000/api/products?category=${categoryName}`);
+        const { data } = await Axios.get(`http://157.230.179.180:5000/api/products?category=${categoryName}`);
         return dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data,
